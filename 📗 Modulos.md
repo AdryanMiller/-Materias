@@ -1,4 +1,4 @@
-# Modulos/Biblioteca Python
+# Modulos/Biblioteca Python 📗
 
 Dados pego no site [Awari](https://awari.com.br/modulos-em-python-aprenda-a-utilizar-a-biblioteca-padrao-do-python/)
 
