@@ -2,7 +2,7 @@
 
 O programa foi criado para calcular o **IMC** de uma pessoa, para saber se esta no peço ideal ou nao.
 
-#### Variaveis 
+### Variaveis 
 
 Vou falar sobre a utulizacao das variaveis 
 
@@ -25,11 +25,11 @@ Vou falar sobre a utulizacao das variaveis
     E a variavel usada para calcular o Img da pessoa 
 
 
-#### Calculo 
+### Calculo 
 
 O calculo do **IMC** e o peso / altura * altura. Fazemos este calculo para descobrir.
 
-#### Condicao
+### Condicao
 
 Utilizamos as condiçoes de **if**, **elif** e **else** para pegar a tabela IMC e utilizar a variavel para descobrir qual e a condicao do usuario.
 
