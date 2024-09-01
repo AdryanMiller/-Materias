@@ -6,22 +6,22 @@ O programa foi criado para calcular o **IMC** de uma pessoa, para saber se esta 
 
 Vou falar sobre a utulizacao das variaveis 
 
-- ge 
+- ge: 
     Ela foi usada para pegar o genero da pessoa. Apesar de nao ser utilizada no codigo.
 
-- name 
+- name: 
     Ele e usada para pegar o nome da pessoa. Utilizada no codigo para ter uma melhor interatividade com o usuario.
 
-- ida 
+- ida: 
     Usada para pegar a idade do usuario. Nao e usada no codico mas e para melhorar a interatividade.
 
-- al 
+- al: 
     Usada para pegar a altura do usuaria e colocar para fazer a conta
 
-- pes 
+- pes: 
     Utilizada para o peso do usuario e fazer a conta
 
-- imc
+- imc:
     E a variavel usada para calcular o Img da pessoa 
 
 
