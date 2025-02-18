@@ -118,4 +118,6 @@ valores.sort(reverse=True)
 
 Um  coloca em orde crescente e o outro em decrecente.
 
+
+
 A varios outros metados mas ate o momento isso e tuo 🧐
