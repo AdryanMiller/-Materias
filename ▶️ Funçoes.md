@@ -89,6 +89,66 @@ No python nos ja utilizamos muito das funcoes e nem percebermos, a linguem por s
 - ```print()```: Imprime valores no console.
 - ```sum()```: Retorna a soma dos elementos de uma sequência.
 
+## Interactive Help
+Muitas linguagens de programação a uma boa documentação, muito feitas pela comunidade, ja achando codigos prontos e explicações detalhadas de um daterminada função. No Python esta documentacao e muito mais ampla e amplificada pela comunidade e pela propria linguagem que ja tem uma farma de encontrar documentacao de maneira rapida que ja e integrada a linguagem.
+Usamos o ```HELP()``` uma funcao que busta a documentacao tanto de outras funcoes, metados ou ate modulos
+Maneira de usar o **HELP()**
+- 1 MANEIRA: TERMINAL 
+  - Abra o terminal e escreva help, logo em seguida digite a funcao ou o metado que voce quer descobrir sua documentacao
+- 2 MANEIRA: IDE
+  - Na parte de escrever codigo escreva
+  ``` help(metado) ```
+
+
+## Docstrings
+Todas as funções ou modulos devem esta sempre catalogadas e tendo uma documentaca, e para isso voce deve fazer a documentação do seu projeto, mas nao so dele, suas funcoes tambem devem esta sempre documentadas tanto para que voce possa entender ou para que outras pessoas entendam tambem.
+Entao imaginei que voce criou uma funcao de um contador e para isso voce tem que documentala veja abaixo um exemplo;
+
+```
+def contador(i,f,p):
+    """
+    -> Faz uma contagem e mostra na tela
+    :param i: Inicio da contagem
+    :param f: Fim da contagem
+    :param p: Passos da contagem
+    :return: sem return 
+    Autor Adryan Miller
+    """
+
+    c = i
+
+    while c <= f:
+        print(f'{c}', end=' ')
+        c += p
+    print('FIM')
+
+contador(2,10,2)
+```
+
+## Argumentos Opcionis
+Nem sempre queremos passar todos os argumentos em uma funcao, as vezes so queremos passar alguns, o problema acontece e que dara erro se nao passarmos todos para que isso nao ocorra usamos o que chamamos de **Argumentos Opcionais**, que faz os argumentos escolhidos nao serem necessaria mente preenchido pelo usuario
+```
+def contador(i=0,f=0,p=0):
+    """
+    -> Faz uma contagem e mostra na tela
+    :param i: Inicio da contagem
+    :param f: Fim da contagem
+    :param p: Passos da contagem
+    :return: sem return 
+    Autor Adryan Miller
+    """
+
+    soma = i + f + p
+
+contador(2,10,2)
+```
+O que ocorre e que voce pode escolher qual argumento nao ira precisar de uma iniciativa, aquilo faz com que nao seja necessario passar o valor pois ela ja ira receber um valor caso nao passe algum.
+
+## Escopo de Variavel
+
+
+
+
 ### Agradecimentos
 Para que possam saber mais aqui estao alguns artigos e vidoes para que entendam mais sobre o tema
 - [Rocketseat](https://www.rocketseat.com.br/blog/artigos/post/como-criar-funcoes-empython#60e8db5ae9694832bf5051f217052012)
