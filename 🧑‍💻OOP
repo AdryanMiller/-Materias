@@ -1,0 +1,35 @@
+# Programacao Orienta a Objeto
+
+Para que possamos enteder o que se trata esse avanço da tecnologia e necessario que entendermos alguns pontos da evolucao das liguagens de programcao ate que chegamos no nivel que estamos hoje.
+
+## Crise de software de 1960
+
+Para um breve contextualizacao, muito antigamente quando os computadores foram criados era necessario uma programcao por cartuchos perfurados, este metado deixava muito limitado o nivel do que poderiamos fazzer um um computador, com o tempo se passando foi necessario se criar uma linguagem para que os seres humanos conseguisem se comunicar com os computadores com isso surgiu a primeira linguagem comoputacional.
+
+A linguagem chamada Assembly, esta linguagem por muitas das vezes nao era estruturada entao nao tinha formas basicas como loops ou condicionais. Pare resolver este problema que se foi criado a primeira liguagem estruturada Algol 60, criada em 1960, para resolver o problema do Assembly nela ja era estruturada entao ja tinhamos blocos de codigos de inicio e fim, loosp e if/else.
+
+Com tudo ainda tinhamos um grande problema, com tudo os codigos ainda nao eram Modularizados, entao todo o codigo ficava em um so arquivo gigante, com o tempo foram evoluindo e conseguiram se fazer com que os codigos fosse modularizados e bem separados.
+
+## A onde entra a Programação Orientada a Objetos ?
+
+Na prgramacao ainda havia muitos problemas, os codigos eram ainda uma estrutura muito complexa de se manusiar e realizar algumas funcoes, muito espalhados com funcoes modulares ainda para cada coisa, com a ideia da orientacao a objetos era de se juntar tudo de uma determinada coisa em um so. Mas isso iremos entender melhor quando chegarmos na explicacao.
+
+## Nomeclaturas e vantagens
+
+A nomeclatura em portugues Brasil e como esta escrito Anteriormente, **Programacao Orientada a Objetos com a sigla POO,** ja em muitos casos que iram esta em ingles a sigla e o nome ficariam **Object Oriented  Programming sendo a sigla OOP**.
+
+Certo agora que sabemos o contexto, os nomes precisamos entender as vantagens e  porque de usar isso nos dias atuais. Nenhum codigo hoje em dia tem a utilizacao de OOP. Antes de tudo  vamos enteder como funciona um Objeto com a utilizacao do exemplo mais comum de uma carro e como funciona.
+
+Um Objeto pode ser explicavel como tudo que e palpavel normalmente, pois ele seria um grupo que tem algumas funcoes especificas, imagine em uma montadora de carro, o carro em si seria o objeto por completo, entretanto quando iremos montar um carro cada parte e imdependete e se comunica com a outra, por exemplo, quando a pessoa que esta fazendo os bancos esta colocando eles, nao necessariamente a pessoa que esta fazendo o motor precisa esperar ou enteder de como funciona a colocaçao dos bancos e versi versa.
+**Ta podemos entender melhor como funciona mas vou melhor isso com o tempo.**
+
+OOP tem suas vantagens e para que voce possa entender uma paavras como **COMER NADA** pode ajudar muito a entender os paramentros.
+
+* Cofiavel - Uma das partes tem que serem tratadas individuais, nao afetando as outras partes
+* Oportuno - Quando separadas em partes cada parte deve ser capaz de ser desenvolvida em paralelo com as outras sem impecilhos
+* Manutenivel - As partes tem que ser de facil manutensao, se uma forma que nao afete todo o progama.
+* Extensivel - De ver capaz de acrecentar coisas em alguma parte sem afetar todas, apenas fazendo algumas alteracoes na parte especifica
+* Reutilizavel - Deve ser capaz de ser reutilizael em diversos casos
+* Natural - Tudo deve ser de forma natural sem parecer esta forcando o programa a realizar
+
+## O que sao Classes, Atibutos e Metados 
