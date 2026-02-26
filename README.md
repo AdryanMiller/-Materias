@@ -1,8 +1,7 @@
-# Criacao de materias sobre Python 🐍
+# Materias Conceituais
 
 ## Objetivo
 
-São materias que estou aprendendo, quero compartilhar com as pessoas para tanto quem queria olhar e aprender,
-ou para dar dicas como melhorar a explicação. 😁
+Neste repositorio irei criar materias sobre temas da programcao, para que posso me orientar melhor analisar os ocorridos e relembrar alguns conceitos importantes da fundacao
 
-Dry- 🎇
+Adryan 
