@@ -25,11 +25,35 @@ Um Objeto pode ser explicavel como tudo que e palpavel normalmente, pois ele ser
 
 OOP tem suas vantagens e para que voce possa entender uma paavras como **COMER NADA** pode ajudar muito a entender os paramentros.
 
-* Cofiavel - Uma das partes tem que serem tratadas individuais, nao afetando as outras partes
-* Oportuno - Quando separadas em partes cada parte deve ser capaz de ser desenvolvida em paralelo com as outras sem impecilhos
-* Manutenivel - As partes tem que ser de facil manutensao, se uma forma que nao afete todo o progama.
-* Extensivel - De ver capaz de acrecentar coisas em alguma parte sem afetar todas, apenas fazendo algumas alteracoes na parte especifica
-* Reutilizavel - Deve ser capaz de ser reutilizael em diversos casos
-* Natural - Tudo deve ser de forma natural sem parecer esta forcando o programa a realizar
+* **Cofiavel** - Uma das partes tem que serem tratadas individuais, nao afetando as outras partes
+* **Oportuno** - Quando separadas em partes cada parte deve ser capaz de ser desenvolvida em paralelo com as outras sem impecilhos
+* **Manutenivel** - As partes tem que ser de facil manutensao, se uma forma que nao afete todo o progama.
+* **Extensivel** - De ver capaz de acrecentar coisas em alguma parte sem afetar todas, apenas fazendo algumas alteracoes na parte especifica
+* **Reutilizavel** - Deve ser capaz de ser reutilizael em diversos casos
+* **Natural** - Tudo deve ser de forma natural sem parecer esta forcando o programa a realizar
 
-## O que sao Classes, Atibutos e Metados 
+## O que sao Classes, Atibutos e Metados
+
+Antes de criamos um Objeto e necessario criar o que dara foma aos objetos, esta estrutura nos chamamos de **Classe** esta forma de estrutura e onde iremos passar as regras para criamos um objeto.
+
+Para um melhor intendimento vamos entrar em um raciocinio mais simples, antes de darmos nomes tecnicos.
+Imagine que voce esta fazendo um bolo, este bolo deve ter o formato de estrela, para que o mesmo tenha este formato é necessario que possua uma forma em formato de estrela assim todos os bolos que voce fazer iram ter o mesmo formato.
+E**m base isto seria o chamamos de classe.** Uma classe e o **conjunto de caracteristicas e acoes que iram ter o seu objeto**
+Na classe tambem temos as caracteristicas que em outras palavras chamamos de **Atibutos**, so eles que daram aspctos a classe. Tambem temos aquilo que chamamos de ações que sao os **Metados**, aqui ira ocorrer as acoes que a classe sofrerar.
+
+Vamos agorar usar um exemplo de uma construcao de uma casa;
+O engenheiro vem para realizar um planta de uma casa, ele começa a desenhar uma planta simples **(planta olhada de cima), esta planta seria nossa Classe**, nosso atributo seria o **tamanho da casa, a cor, andares,** ja os nossos metados seriam algo como, **se a casa e movel, derrubar a casa, pintar a casa, mobilhar.**
+
+Isso tambem poderia ser para o bolo sendo a forma a classe tendo o **tamnho, temperatura, sabor, cozido sendo os Atributos**
+Ja os **Metados sendo, comer, partir, cozinhar, guardar.**
+
+Show, agora que entendemos esta parte e necessio que sabemos montar uma classe, para isso e necessario sabermos o diagrama de classe da UML.
+Veja o Exemplo do bolo abaixo;
+![alt text](ImagemUMLOPP.png)
+
+Temos 2 conceitos importantes que devemos saber deles.
+ 1- **Instancias** - E o ato de fazer com que a classe se torne um objeto, e o momento que passamos a planta da casa para os pedreiros e eles estao contruindo, ali acontece a instancia, fazendo assim uma classe se tornar um objeto expecifico
+
+ 2-**Estado** - O estado e tudo que um objeto esta no momento, como o bolo a temperatura, tamanho, sabor tudo junto e um estado, este estado muda com o passar do tempo, ja que um objeto na maioria das vezes nao e fixo 
+
+==========================================================================================
