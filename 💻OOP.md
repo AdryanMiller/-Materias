@@ -101,4 +101,54 @@ Vamos descrinchar cada parte
 
 Aqui vimos uma forma simplificada e com um exemplo simples so para que possamos entender como criar uma classe e instaciar um objetos. A varias formas e regras para que possamos otimizar nosso classe.
 
-## Otimizacao da Class
+## Otimizacao da Class e Criacao de Documentacao
+
+Vamos usar o exemplo anterior mas colocando algumas modificacoes para que seguicemos o pradrao geral
+
+```
+class Gafanhoto:
+    '''
+        Esta classe cria um Gafanhoto
+        Variavel = Gafanhoto(nome, idade)
+        return nome e idade
+        return aniversario (idade + 1)
+    '''
+    def __init__(self, nomeUsuario='desconhecido', idadeUsurario=0): #Metador construtor
+        # Atributos
+        self.nome = nomeUsuario
+        self.idade = idadeUsurario
+
+    #Metados 
+
+    def aniversario(self):
+        self.idade += 1
+
+
+    def __str__(self):
+        return f'{self.nome} é Gafanhoto e tem {self.idade} anos'
+    
+
+    def __getstate__(self):
+        return f'Nome: {self.nome}, Idade {self.idade}'
+
+
+
+#dECLARACAO DE OBJETOS
+
+g1 = Gafanhoto('Adryan', 20)
+
+g1.aniversario()
+print(g1)
+print(g1.__getstate__())
+print(g1.__doc__)
+print(g1.__dict__)
+print(g1.__class__)
+```
+
+1 - **Atributos;** Mudanca na onde se coloca um atributo assim como nas funcoes normais colocamos **variaveis para receber e depois passamos para o self**
+2 - **__srt__ ;** Isso e uma mensagem padrao que irar aparecer sempre que **chamarmos nosso objeto.**
+3 - **__getstate__ ;** Aqui irar mostrar o **estado que se encontra o objeto,** pode pegar so os atributos mas tambem pode pesonalizar por padrao ele mostra em forma de dicionario
+4 - **__doc__ ;** Tudo no Python e um objeto aqui voce vai chamar a documentacao deste objeto, que voce pode ver que foi criada no inicio do codico com **"""conteudo"""**
+5 - **__dict ; ** Ele irar mostrar o objeto em **forma de dicionario**, que se pode trabalhar no mesmo
+6 - **__class ; ** Mostra de qual **classe e o objeto**
+
