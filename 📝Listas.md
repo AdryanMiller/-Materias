@@ -116,8 +116,73 @@ valores.sort(reverse=True)
 [34,22,4,1]
 ```
 
-Um  coloca em orde crescente e o outro em decrecente.
+Um  coloca em ordem crescente e o outro em decrecente.
 
+
+## List Comprehension
+Nada mais é do que uma maneira de construir listas no Python de forma mais rápida, em uma linha de código!
+
+OBS: Lembrando que essa lista vai ser construída pelo seu código e não você escrevendo ou puxando de uma base de dados!
+
+Para que serve o list comprehension? Na verdade, ele vai te ajudar em 2 situações.
+
+A primeira é para que você saiba como fazer para criar uma lista de forma mais rápida e eficiente no seu código quando for gerar uma lista dentro dele.
+
+E a segunda é para que você tenha conhecimento de como isso funciona, pois muita das vezes quando for fazer alguma busca na internet é possível que você se depare com essa maneira de construir uma lista.
+
+Então se você souber como o list comprehension funciona você vai de cara entender o que aquele código está fazendo.
+
+Isso é fundamental quando estamos buscando informações na internet, entender os códigos para que possamos replicar ou pegar parte desse código para a nossa aplicação.
+
+Vamos ao exemplo prático para te mostrar a diferença entre a utilização de uma estrutura de repetição para a criação de uma lista para a utilização do list comprehension.
+
+- Primeiro Caso
+
+```
+#Sem list 
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
+
+for x in fruits:
+  if "a" in x:
+    newlist.append(x)
+
+print(newlist)
+
+#----------------------------
+#Com List
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+
+newlist = [x for x in fruits if "a" in x]
+
+print(newlist)
+```
+
+Aqui voce irar pegar a expressao x que voce irar usar como base e irar escrever o for pos a sua condicao
+
+- Caso 2
+  
+```
+#Sem list 
+
+preco = [100,200,300]
+precoNovo = []
+
+for item in preco:
+  precoNovo.append(item*2)
+
+print(precoNovo)
+
+#------------------------
+#Com list
+
+preco_Novo = [i * 2 for i in preco]
+
+print(preco_Novo)
+```
+
+Aqui dobrar o preco de um item na lista a primeira parte **i * 2** e o que irar ser adicionado na lista depois realizar o for.
 
 
 A varios outros metados mas ate o momento isso e tuo 🧐
