@@ -101,7 +101,289 @@ Vamos descrinchar cada parte
 
 Aqui vimos uma forma simplificada e com um exemplo simples so para que possamos entender como criar uma classe e instaciar um objetos. A varias formas e regras para que possamos otimizar nosso classe.
 
-## Otimizacao da Class e Criacao de Documentacao
+### Nomeclatura de atributos 
+
+Diferenca de **__** e de **_** para os atributos no __init__
+
+Quando se coloca **__** no seu atributo voce esta indicando para o usuario que nao e para mexer no mesmo e nao ha metados para modificar
+
+Ja quando e **_** voce esta indicando para o usuario que ele pode consultar o atributo e tem um metado para modificar, mas nao e para mexer em seu estado diretamente e para usar o metado criado
+
+Exemplo
+```
+self.__cpf = cpf
+self._nome = nome
+```
+Colocar um **_** para o python em si e so necessario se o usuario nao tiver que mexer com o atributo, mas caso o atributo ele deve ter um verificacao e for mais sencivel usamos o conceito de Get e Set isso faz com que o atributo tenha veficacoes 
+
+Imagine que voce tenha um atributo de senha, mas o mesmo tem que ser de 4 digitos e o usuario pode mexer nele mas seguindo as verificacoes e ai que voce usa os metados
+
+```
+self._senha = '1234'
+
+    @property (Get)
+    def senha(self):
+        return self._senha
+    
+    @senha.setter (set)
+    def senha(self, valor):
+        if len(valor) == 4 and valor.isnumeric():
+            self._senha = valor
+        else:
+            print('Nova senha invalidade')
+
+
+cartao_Adran.senha = '1235'
+
+print(cartao_Adran.senha)
+```
+
+No get e o que voce quer que acontece quando o usuario quer visualizar o atributo
+Ja no set e para fazer a verificacao caso o usuario queira mexer no atributo
+
+Voce deve esta se perguntando quando que usamos _nomevaraivel para um metado auxilizar e quando usamos para get ou set. No Python por se so voce ira usar o get e set so se voce quiser que o usuario possa mexer no atributo com algum tipo de verificacao caso ao contrario, voce so ira usar self.nomevariavel.
+
+### Metado Estatico
+
+Um metado estatico e um metado que iria ficar na classe por se so e nao nas instancias ele serve muito para auxiliar os metados dos objetos.
+Para voce dizer que um metado e estatico voce deve escrever **@staticmethod**, isso irar informar que a metado e um metado estatico
+
+```
+class ContaCorrente:
+
+    @staticmethod
+    def _data_hora():
+        fuso_BR = timezone('Brazil/East')
+        horario_BR = datetime.now(fuso_BR)
+        return horario_BR.strftime('%d/%m/%Y as %H:%M:%S')
+
+    def __init__(self, nome:str, cpf:int, agencia:int, num_conta:int):
+        self.nome = nome
+        self.cpf = cpf
+        self.saldo = 0
+        self.limite = None
+        self.agencia = agencia
+        self.num_conta = num_conta
+        self.transacoes = []
+        self.cartoes = []
+
+    def consultar_saldo(self):
+        return 'Seu saldo atual e de R${:,.2f}'.format(self.saldo)
+    
+```
+
+## Abstracao
+
+### O que e ?
+
+A arte de ignorar o irrelevante e se focar no estremamante essencial
+
+Imagine o exemplo da classe de pessoas, quando voce começa a criar voce começa a pensar em muitas coisas e começa a ficar perdido, sendo assim o exercício e voce focar no relevante, no essencial.
+
+Para melhorar mais ainda a explicacao iremos usar um exemplo de um controle remoto
+
+Quando voce ver um controle remoto se bem construido, voce por se so sabe o que a mariora do botoes fazem. Entretanto voce nao precisa saber como estes botes funcionam so as suas funcionalidades. 
+
+‘’A pessoa deve se **fornar somente na interface publica que esta disponivel e nao no funcionamento.’’**
+
+### Vantagens
+
+- Melhor legibilidade
+- Padronizacao
+- Simplificação dos problemas
+- Seguranca - Nao expoem com funciona por dentro
+
+### Frases teoria
+
+‘’Existem abstracao de dados que acontece quando ignoramos informaçoes desnecessárias para o escopo do projeto ’’ - Quando vai cadastrar alunos voce pode ter nome cpf altura peso, mas faria sentido voce ter o peso e a altura ?
+
+“Existe abstracao de processos, quando nao precisamos saber como um metado faz seu trabalho, apenas sabe que ele existe pela sua interface” - Quando voce sabe que o metado esta la mas voce nao precisa saber como ele funciona so usa somente ele
+
+### Padronizacao
+
+Vem muito da sua classe abstrata, seria uma classe que nao e usada para virar objetos mas sim para servir como base para evitar repeticoes.
+
+Lembra do nosso exemplo pessoas. A classe pessoas seria nossa classe abstrata, ja que a gente nao vai criar uma pessoa generica a gente vai criar um Aluno, Professor, Funcionario.
+
+A classe pessoas serve somente para que as seguintes classes especializadas tenham um padrao.
+
+Agora vem comigo, imagina que na classe Pessoas, nos temos o metado aniversario, todas as classes filhas recebem este metado ja que todo mundo faz aniversario da mesma formar. Mas a classe pessoas tambem tem um metado estudar, entretanto cada classe Aluno, Professor e Funcionario estudam de uma forma diferente.
+
+O que quer dizer, a classe mae fala que todas as filhas devem estudar, mas do seu jeito. Para isso criamos um **metado Abstrato {Abstrato},** um metado que obriga as sub classes a receber da classe mae.
+
+Este metado nao pode ter linhas de codigo, porque se ele tiver voce esta informando que todos devem estudar daquela forma.
+
+“Uma classe Abstrata nunca sera instanciada, ja que ela sera usada como base para as subclasses”
+
+“Ao definir um conjunto de metados abstratos, estamos dizendo que estamos criando uma intrface publica da classe”
+
+“Uma classe abstrata pode ter metados abstratos que deverao ser implementados nas subclasses”
+
+“Mas uma classe abstrata pode ter metados contratos se eles funcioarem da mesma maneira para todas as subclasses **(DRY)”**
+
+### Pratica
+
+Antes a gente tem que importar o modulo **ABC(Abstract Base Class),** o python por natividade nao tem abstracao entao tem que importar
+
+```
+from rich import print, inspect
+from abc import ABC, abstractmethod
+
+class Pessoa(ABC):
+    def __init__(self, nome = '', idade = 0):
+        self.name = nome
+        self.idade = idade
+    
+    def fazer_aniversario(self):
+        self.idade += 1
+
+    @abstractmethod
+    def estudar(self):
+        pass
+
+class Aluno(Pessoa):
+    def __init__(self, nome, idade, curso, turma):
+        super().__init__(nome, idade)
+        self. curso = curso
+        self.turma = turma
+
+    
+    def fazer_matricula(self):
+        print('[green]Aluno fez matricula[/]')
+
+    def estudar(self):
+        print(f'Aluno {self.name} o curso de {self.curso}')
+
+class Professor(Pessoa):    
+    def __init__(self, nome, idade, especialidade, nivel):
+        super().__init__(nome, idade)
+        self.especialidade = especialidade
+        self.nivel = nivel
+
+    def dar_aula(self):
+        print(f'Professor começo a dar aula')
+
+    def estudar(self):
+        print(f'{self.name} e especialista {self.especialidade} do nivel {self.nivel}')
+
+class Funcionario(Pessoa):
+    def __init__(self, nome, idade, cargo, setor):
+        super().__init__(nome, idade)
+        self.cargo = cargo
+        self.setor = setor
+
+    
+    def bater_ponto(self):
+        print(f'Funcionario bateu ponto')
+
+    def estudar(self):
+        print(f'{self.name} se especializa na area de {self.setor}')
+```
+
+- Analisa que todos **metado de estudar ele tem suas proprias linhas de codigo.**
+- Observe que voce tem que colocar o **ABC na sua classa Mae**
+- Observa tembem que la em cima no metado que sera abstrato ele tem um `@abstractmethod`
+
+## Encapsulmento
+
+falar sobre en
+
+## Herança
+
+### O que e Heranca
+
+Em uma forma tecnica de se explicar herança seria assim
+" É um relacionamento entre itens **gerais(acestrais)** e **tipos mais especificos(decendentes)** desses itens, que **herdam atributos e metados** dos niveis superiores
+
+Em uma explicacao mais simples
+Imagine um casal de passarinhos, cada passarinho tem seus caracteristicas, a um tem as penas azuis com olhos amarelos, o outro e vermelho com olhos verdes.
+Os mesmos tiverem um filhote, este mini passarinho herda dos seus pais suas caracteristicas o corpo e azul, o olho e verde dizemos que ele herdeou suas caracteristicas. Entretando nao se herda so caracteistica se herda tambem jeitos, o jeito de siscar, bater assas. Logico como o passarinho filhote e unico ele tambem tem suas proprias caracteristicas e jeitos.
+
+### Nomeclaturas
+- Heranca- A heranca de uma classe para outra se dar por meio de uma seca aberta, chama de **Generalizacao** e e um relacionamento de **'E um'**
+- SuperClasse - A classe de cima tem varios outros nomes **(Classe Base, Ancestral, Classe mae)**
+- SubClasse - Classe abaixo **(Classe Derivada, Desendente, Classe Filha)**
+
+### Vantagens 
+
+- Reutilizacao de codigo
+- Organizacao hierarquica
+- Facilidade de manutencao
+- Extensibilidade 
+- Suporte a Polimofismo
+
+### Utilizacao de Herança
+Vamos pensar em um sistema que cadastras pessoas de uma escola, professores, alunos e funcionarios, a gente poderia criar uma classe para todos mundo e cadastrar cada um isolademente, mas percepe uma coisa cada classe tem coisas idendicas com a outras (imagine que todos fazer aniversario como metado)
+
+- nome
+- idade
+- fazer aniversario
+
+Voce pode usar isso como base e criar uma classe generica que irar ter esses mesmo atributos e pode ter uma classe especialidades que teram seus proprios metados e atributos 
+
+Exemplo Pratico
+
+```
+class Pessoa:
+    def __init__(self, nome = '', idade = 0):
+        self.name = nome
+        self.idade = idade
+    
+    def fazer_aniversario(self):
+        self.idade += 1
+
+
+class Aluno(Pessoa):
+    def __init__(self, nome, idade, curso, turma):
+        super().__init__(nome, idade)
+        self. curso = curso
+        self.turma = turma
+
+    
+    def fazer_matricula(self):
+        print('[green]Aluno fez matricula[/]')
+
+
+class Professor(Pessoa):    
+    def __init__(self, nome, idade, especialidade, nivel):
+        super().__init__(nome, idade)
+        self.especialidade = especialidade
+        self.nivel = nivel
+
+
+    def dar_aula(self):
+        print(f'Professor começo a dar aula')
+
+
+class Funcionario(Pessoa):
+    def __init__(self, nome, idade, cargo, setor):
+        super().__init__(nome, idade)
+        self.cargo = cargo
+        self.setor = setor
+
+    
+    def bater_ponto(self):
+        print(f'Funcionario bateu ponto')
+
+a1 = Aluno('Lorran',20,'Informatica','T01')
+a1.fazer_aniversario()
+a1.fazer_matricula()
+
+p1 = Professor('Bira',45,'Portugues','Mestre')
+p1.dar_aula()
+
+f1 = Funcionario('Ana', 18, 'TI', 'Informatica')
+f1.bater_ponto()
+```
+
+- Observe que para herdar os atributos e os metados de uma classe mae **usamos seu nome nas classes filhas**
+- Observe: Dentro da funcao que inicia uma classe tem um **super().__(nome, idade)**, voce ira colocar os **atributos da classe mae.**
+
+## Polimofismo
+
+falar de poli
+
+ e Criacao de Documentacao
 
 Vamos usar o exemplo anterior mas colocando algumas modificacoes para que seguicemos o pradrao geral
 
