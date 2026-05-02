@@ -144,10 +144,97 @@ contador(2,10,2)
 ```
 O que ocorre e que voce pode escolher qual argumento nao ira precisar de uma iniciativa, aquilo faz com que nao seja necessario passar o valor pois ela ja ira receber um valor caso nao passe algum.
 
-## Escopo de Variavel
+## Map 
+A funcao do metado map e para que voce possa colocar uma funcao determinada em cada item de um Iterable.
+Para voce ter um exemplo mais pratico observe como isso funciona.
 
+```
+def dobro(a):
+    return a*2
 
+lista_numeros = [1,2,3,4,5,6,7,8]
 
+lista_dobro = list(map(dobro, lista_numeros))
+
+print(lista_dobro)
+```
+
+Se voce nao transformar ele em algum iterable, a resposta dele sera um espaco na memoria.
+
+## Key
+O parametro key em muitos dos metados normalmente esperam que voce passa uma funcao para que eles possam order o que voce quer 
+- sort()
+- min()
+- max()
+
+Veja um exemplo pratico
+
+```
+def segundo_item(tuplas):
+    return tuplas[1]
+
+vendas_produtos = {'venho': 100, 'cafeteira': 150, 'microondas': 300, 'iphone': 5500}
+
+lista_vendas = list(vendas_produtos.items())
+
+lista_vendas.sort(key=segundo_item, reverse=True)
+```
+
+## Lambda
+
+Uma funcao Lambda e por sua vez uma funcao que nao tem nome, o que chamados de anonimas, muito usadas em codigos que o resultado irar ser unico e simples, sem a necessidade de criar uma funcao deterministica.
+
+## Criando um Funcao Lambda
+
+Uma função lambda é criada usando a palavra-chave ```lambda```, seguida de um ou mais argumentos, e uma expressão:
+
+- argumentos são os dados de entrada que esta função irá receber
+- expressão é o código que será executado quando a função lambda for chamada.
+
+Basico da Sintaxe 
+```
+lambda {argumentos}: {expressão}
+```
+
+Veja o exemplo abaixo
+
+```
+soma = lambda x, y: x + y
+print(soma(2, 3))
+```
+
+Podemos chamar uma funcao lambda em uma variavel igual fizemos a cima ou podemos tambem chamar diretamente teria o mesmo resultado
+```
+print((lambda x, y: x + y)(2, 3))
+```
+
+## Usando funções lambda com map e filter
+
+A utilizacao da expressao Lambda muito e usada com metados que pedem funcoes internas para que possam modificar algo
+
+Veja o exemplo abaixo, onde usamos a função map para aplicar uma função lambda que eleva cada elemento de uma lista ao quadrado:
+
+```
+lista = [1, 2, 3, 4]
+
+print(list(map(lambda x: x ** 2, lista)))
+
+#E a saída será:
+
+[1, 4, 9, 16]
+```
+
+No exemplo abaixo,usamos a função filter para retornar apenas os números pares de uma lista:
+
+```
+lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print(list(filter(lambda x: x % 2 == 0, lista)))
+
+#Gerando a saída:
+
+[2, 4, 6, 8, 10]
+```
 
 ### Agradecimentos
 Para que possam saber mais aqui estao alguns artigos e vidoes para que entendam mais sobre o tema
