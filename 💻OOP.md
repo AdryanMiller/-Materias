@@ -64,7 +64,7 @@ Para a criacao de um classe e um objeto temos varios fatores importantes de se e
 
 ### Como criar uma Classe
 
-```
+```python
 #DECLARACAO DE CLASSE
 class Gafanhoto:
     def __init__(self): #Metador construtor
@@ -105,7 +105,7 @@ Aqui vimos uma forma simplificada e com um exemplo simples so para que possamos 
 
 Vamos usar o exemplo anterior mas colocando algumas modificacoes para que seguicemos o pradrao geral
 
-```
+```python
 class Gafanhoto:
     '''
         Esta classe cria um Gafanhoto
@@ -169,7 +169,7 @@ Colocar um **_** para o python em si e so necessario se o usuario nao tiver que 
 
 Imagine que voce tenha um atributo de senha, mas o mesmo tem que ser de 4 digitos e o usuario pode mexer nele mas seguindo as verificacoes e ai que voce usa os metados
 
-```
+```python
 self._senha = '1234'
 
     @property (Get)
@@ -199,7 +199,7 @@ Voce deve esta se perguntando quando que usamos _nomevaraivel para um metado aux
 Um metado estatico e um metado que iria ficar na classe por se so e nao nas instancias ele serve muito para auxiliar os metados dos objetos.
 Para voce dizer que um metado e estatico voce deve escrever **@staticmethod**, isso irar informar que a metado e um metado estatico
 
-```
+```python
 class ContaCorrente:
 
     @staticmethod
@@ -276,7 +276,7 @@ Este metado nao pode ter linhas de codigo, porque se ele tiver voce esta informa
 
 Antes a gente tem que importar o modulo **ABC(Abstract Base Class),** o python por natividade nao tem abstracao entao tem que importar
 
-```
+```python
 from rich import print, inspect
 from abc import ABC, abstractmethod
 
@@ -337,7 +337,191 @@ class Funcionario(Pessoa):
 
 ## Encapsulmento
 
-falar sobre en
+### O que e Encapsulamento 
+
+O encapsulamento visa manter integridade do sistema, protegendo o estado interno do objeto contra interferencia externa nao regulamentada.
+
+Vamos ao um exemplo mais logico e que possamos pensar corretamento sobre isso 
+
+**Exemplo 1:**
+Imagine que voce tem um controle remoto, e este controle esta aberto, ele ainda possui todos os botoes e funcionalidades, mas esta totalmente exposto. Pode estragar, voce pode tirar a pilha sem querer e ele estragar, pode encostrar em algo que nao deveria. Este controle nao esta seguro nao esta encapsulado para proteger suas funcoes
+
+**Exemplo 2:**
+Imagine um botao, este botao tem a funcao de lancar um foguete. Entretanto nao e todas as pessoas que podem lancar este foguete, porque se nao vira bagunca. Para apertar o foquete e necessario passar por uma seguencia de verificacoes de seguranca e se passar e for uma pessoa autorizada ai sim pode apertar o botao.
+
+O encapsulamento e exatamente isso, uma forma de proteger o codigo para que nao possa ficar inseguro, uma forma de seguranca do codigo.
+
+### Vantagens do Encapsulamento
+
+- **Segeuranca e controle:** O codigo fica muito mais seguro e podedo controlar quem, o que pode mexer.
+- **Facilidade de Manutencao:** A manutembilidade do codigo e facilitada, ja que nao vamos mexer no que o botao irar fazer mas sim como o foguete sera lancado.
+- **Flexibilidade e Reutilizacao:** Se tudo ficar certinho modalizado, seguro dentro de uma classe, e super possivel usar essa classe para ser utilizada.
+- **Reducao de efeitos colaterais:** Reduz os riscos, quanto tudo esta seguro os efeitos que podereiam acontecer sao menores.
+
+Para realizar essa protecao precisamos entender esses pontos
+
+- Visibilidade dos Atributos 
+- Acesso aos dados protegidos
+  
+### Visibilidade
+Existem **tres(3)** tipos de visibilidade para atributos em linguagens POO.
+Os simbolos usados sao na teoria e em diagramas, nao sao os simbolos que se usam em codigo nem e python nem java nem em C.
+
+- **public (+):** Atributos publicos sao representados por **+** em teoria, em na maioria das linguagens e o termpo **public**. Atributos publicos podem ser alterados em qualquer momento do codigo, tando na main quanto na classe mae e nas filhas os dados sao alteraveis
+- **protected (#):** Atibutos protegidos e representado por um **#** em algumas liguagens e o termo **protected**, este faz com que os atibutos podem ser mudados somente na classe mae e filhas e nao e capaz de se mudar no codigo central forcado.
+- **private (-):** Atibuto privados esta representados com o sina de **-**, em algumas linguagem o termo **private**, aqui o atributo so pode ser mudade e somente na classe mae
+
+### Como isso se representa no Python
+
+O python ha orientacao a objeto entretanto e representado de uma forma diferente. O python nao ha uma **visibilidade forcada**, muitas linguagens tem uma visibilidade de atributos fortes e explicitas, nao e tao versatil.
+No python isso nao ocorre, e feito por uma norma na comunidade Python que chamamos de **Consenting Adults**, significa que tem liberdade com responsabilidade. E uma forma de deixar mais flexivel mas podendo mexer nos atibutos.
+Para isso deve seguir esse acordo, um acordo de cavalheiros.
+
+**Representacao no Python**
+No python a visibilidade e representada por **_** o que e algo diferente.
+
+- **Public:** O atributo quando publico nao a nada, somente seu nome.
+- **Protected ( _ ):** Representado por **1 underline (_)**
+- **Private (__):** Representado por **2 underline (__)**
+
+
+
+
+### Exemplo codigo
+
+```python
+#Criacao da classe conta bancaria
+
+class ContaBancaria:
+    """
+    Cria uma conta bancaria que permite realizar depositos e saques da conta;
+    """
+
+    def __init__(self, id, nomepessoa, saldoconta = 0):
+        self.idconta = id #(public + )
+        self._titular = nomepessoa #(protegido #)
+        self.__saldo = saldoconta #(privado -)
+        print(f'\033[1;32mConta bancaria crianda com SUCESSO. Salda e de {self.__saldo}\033[m\n')
+
+    
+    def __str__(self):
+        #return f'\033[1;33mInformaceos conta:\033[m Id: {self.idconta} ; Nome: {self.titular} ; Saldo: R${self.__saldo:.2f}'
+        return f'Estado atual da conta {self.__dict__}'
+    
+    
+    def depositar(self, valordeposito):
+        valordeposito = abs(valordeposito)
+        self.__saldo += valordeposito
+        print(f'\033[1;37mDepossito de {valordeposito} feito com SUCESSO\033[m')
+    
+
+    def sacar(self, valorsaque):
+        valordeposito = abs(valordeposito)
+        if valorsaque > self.__saldo:
+            print(f'\033[1;35mSaldo insuficiente\033[m nao pode sacar R${valorsaque:.2f}. Saldo da conta R${self.__saldo:.2f}')
+        else:
+            self.__saldo -= valorsaque
+
+```
+
+Caso por algum motivo voce queria mexer nos atributos mesmo eles mexendo voce precisa entender como vai funcionar
+
+O python permite que voce tente modificar ela, em si o valor original do atributo nao irar modificar, o python cria um novo atibuto generico.
+Para o Protected o python cria um atibuto generico e mantem o original. Caso queira mexer no original voce vai escrever ```instacia._nomeAtributo = valor```
+Ja para o atributo privado o python mantem o atributo original com o nome da class e o nome do atributo entao nao adianta voce colocar 2 underline, pois se nao ele so irar criar um atributo com __ na frente. Para que voce possa mudade voce irar fazer o seguinte ```_NomeClasse__nomeAtibuto = valor```
+
+## Acesso a dados protegidos
+
+Protejemos nossos dados e metados, o que ocorre ainda e algo como no banco. Mesmo colocando uma seguranca ainda estamos de frente ao cofre, isso faz com que possamos realizar qualquer opecao com essas dados, caso tivermos permissao.
+Para que isso nao acontece e necessario termos uma maneria de verificaco uma forma padrao para isso. 
+Existem duas maneira de permitir o acesso ao dados encapsulados em python
+
+- Getters e Setters 
+- Uso do decorador ```@property```
+
+## Veja um ecemplo em codigo
+Usando metados acessores **Getters e Setters**
+
+Imagine que isso e um quadro de forma teorica.
+
+```
+-----------------------
+class Avaliacao       -
+-----------------------
++ nome
++ diciplina
+# _nota 
+-----------------------
++ set_nota(valor)
++ get_nota()
+-----------------------
+
+class Avalicao:
+
+    def __init__(self, nome, diciplina,nota = 0):
+        self.nome = nome
+        self.diciplina = diciplina
+        self._nota = nota
+
+    def get_nota(self):
+        return self._nota
+    
+    def set_nota(self, valor):
+
+        if 0 <= valor <= 10:
+            self._nota = valor
+
+        else:
+            print('Nota invalida')
+
+av1 = Avalicao('Pedro','Matematica',15)
+av1.set_nota(-5)
+```
+
+- O metado get_nota, por padrao de nomeclatura sempre deve começar com o metado que voce esta usado e o atributo
+- O metado get_nota, por sua vez e o metado que pega o atributo e em seu caso irar monstrar ele
+- O matado set_nota, irar modificar, o atibuto, e ate mesmo fazer breves verficacoes.
+
+**Usando agora o metado @property**
+```
+-----------------------
+class Avaliacao       -
+-----------------------
++ nome
++ diciplina
+# _nota 
++ @nota.getter
++ @nota.setter
+-----------------------
+
+class Avalicao:
+
+    def __init__(self, nome, diciplina,nota = 0):
+        self.nome = nome
+        self.diciplina = diciplina
+        self._nota = nota
+
+    @property
+    def nota(self):
+        return self._nota
+    
+    @nota.setter
+    def nota(self,valor):
+        if 0 <= valor <= 10:
+            self._nota = valor
+
+        else:
+            print('Nota invalida')
+
+av1 = Avalicao('Pedro','Matematica',15)
+av1.nota = 3.5
+
+```
+- Por padrao sempre usar o mesmo nome do atibuto que esta mexendo nas funcoes de @property
+- O a funcao com apenas @property, e o metado get que em base apenas recebe o atibuto e retorna ele sem muita dificudade
+- voce deve colocar o nome da funcao que esta mexendo @nota.setter para identificar que este e o metado setter
+- Antes e tudo preste uma atensao, isto nao e um metado utilizavel o setter, pois ele irar modificar direto no atibuto.
+
 
 ## Herança
 
