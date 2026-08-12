@@ -536,7 +536,7 @@ Os mesmos tiverem um filhote, este mini passarinho herda dos seus pais suas cara
 
 ### Nomeclaturas
 - Heranca- A heranca de uma classe para outra se dar por meio de uma seca aberta, chama de **Generalizacao** e e um relacionamento de **'E um'**
-- SuperClasse - A classe de cima tem varios outros nomes **(Classe Base, Ancestral, Classe mae)**
+- SuperClasse - A classe de cima tem varios out ros nomes **(Classe Base, Ancestral, Classe mae)**
 - SubClasse - Classe abaixo **(Classe Derivada, Desendente, Classe Filha)**
 
 ### Vantagens 
@@ -559,6 +559,8 @@ Voce pode usar isso como base e criar uma classe generica que irar ter esses mes
 Exemplo Pratico
 
 ```
+from abc import ABC
+
 class Pessoa:
     def __init__(self, nome = '', idade = 0):
         self.name = nome
