@@ -616,9 +616,261 @@ f1.bater_ponto()
 - Observe que para herdar os atributos e os metados de uma classe mae **usamos seu nome nas classes filhas**
 - Observe: Dentro da funcao que inicia uma classe tem um **super().__(nome, idade)**, voce ira colocar os **atributos da classe mae.**
 
-## Polimofismo
+## Polimorfismo
 
-falar de poli
+### O que é Polimorfismos
+
+Polimorfismo vem do grego de Polys (Varios Muitos), Morphe (Forma), entao polimorfismo seria *Muitas formar*. O que isso nao quis dizer nada exatamente ja que ate agora nao ha um explicacao melhor.
+Antes e bom resaltar que em Python polimorfismo se comporta diferente das outras linguagens, entretando iremos ver o conceito central e depois o conceito com Python.
+Em uma explicacao mais teorica de livros polimorfismo seria, propriedade ou estado daquilo que se *apresenta* ou se comporta de *varias formar* diferentes.
+Podemos dizer que e um unico nome com comportamentos diferentes.
+Certo, um monte de abobrinha e ainda nao entendi. No inicio eu tambem nao havia entendido o que e esses tanto de termo e como ele ainda funcionava. Para isso vou explicar de uma forma mais didatica.
+Vamos usar o exemplo do Pato para entendermos;
+Imagine um pato, para ele se locomover ele pode andar na terra, entretando se ele tiver na agua ele entao vai nadar, e se ele tiver no ceu entao ele vai vooar. Percebeu para o pato se locomover ele pode fazer varias coisas dependo da situacao.
+Agora pense que pato e um objeto e locomover e uma metado do mesmo.
+```
+Pato.locomover('Andar')
+Pato.locomover('Nadar')
+Pato.locomover('Voar')
+```
+O metado locomover pode fazer varias coisas mas com um objetivo que e se locomover.
+No python temos nomes para cada tipo de coisas como eesta
+**Function Overload**
+Pensa no metado Len, lembra o que ela de retorna o comprimento de um determinada entrada
+- len('string') - o retorno vai ser quantos caracteres possui essa string
+- len(['Lucas','Antonio']) - Vai retornar 2, por so tem 2 itens no lista
+- len('{chave': valor, 'chave': valor}) - Aqui tambem irar retornar 2 ja que dicionario tem valores com chaves e valores
+
+**Operador Overload**
+Tambem podemos falar de operadores no python que ocorre muito sobre isso e iremos usar como exemplo o operador de mais **+**
+- +5 - Estaria falando que o numero seria positivo
+- 5 + 4 - Esta atibuindo para se fazer uma soma
+- 'Polis' + 'morfismo' - Esta juntando uma string na outra 
+
+Percebu que tem varias funcoes para dados diferentes com o mesmo objetivo. Isso e polimorfismo, quando uma coisa tem o mesmo nome mas tem varias opcoes de saida e de valores.
+Vamos ver como isso e na pratica.
+
+```
+print(len('Curso'))
+print(len(['Antonio','Manoel']))
+
+print(+5)
+print(5+4)
+print('Dina' + 'Mite')
+```
+
+A beleza, voce tambem explicou isso, mas como eu crio o meu proprio polimofismo. Para isso vamos usar exemplos de animais
+- Pato
+- Cachorro
+- Gato
+- Galinha
+Todos esses animais eles emitem um som.
+Entao temos um metado para eles
+- Emitirsom()
+
+Entao vamos mostrar como ficaria isso na pratica.
+Antes de eu falar para voce sobre o codigo e preciso falar sobre os tipo de polimorfismo, tem livros que falam ate de 6 tipos os mais comuns sao
+- Override
+- Ad-hoc Overloading
+- Ad-hoc Coercion
+- Tamplete
+Esses sao os 4 mais famosos que temos em livros, entretando o python so aceita 2 tipos o de** Override e o de Ad-hoc Overloading**
+
+Polimorfismo de Override ou de sobre escrever, que vai sobrepor a funcao da classe pai, por isso falam que nao tem como fazer polimorfismo sem heranca
+```
+from abc import ABC, abstractmethod
 
 
+class Animal(ABC):
+    def __init__(self, nome:str = ''):
+        self.nome = nome
 
+    @abstractmethod
+    def emitir_som(self):
+        print(f'{self.nome} é {self.__class__.__name__} e esta emitindo um som')
+
+class Pato(Animal):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer QUA! QUA!')
+
+class Cachorro(Animal):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer AU! AU! AU!')
+
+class Spitz(Cachorro):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer au!au!au!au!au!au! ')
+
+class Pitpul(Cachorro):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer RUF! RUF! RUF!')
+
+class Gato(Animal):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer MIAU! MIAU!')
+
+class Galinha(Animal):
+    def emitir_som(self):
+        print(f'{self.nome} acabou de dizer Po! PO!')
+```
+
+
+**Sobrecarga de Metado / Overloading**
+No python nativo nao tem como fazer isso, mas ja vem uma biblioteca ja pronta disse dentro do pacote do python. Show, para ser rapdio isso e como o Type funciona nao extamente mais o conceito em que voce olha, sempre que passa um dado para ele ele retorna a voce o tipo.
+Bem pensa em um **analisador** de tipo em uma classe para isso e tem um metado chamado **analisar**, vai irar passar um valor e ele vai analisar, entretanto np Python nao e possivel porque se voce tiver um metado com o mesmo nome vai sobrescrever os anteiores, entao o que vai irar prevalecer e o ultimo metado.
+Pontos que devemos observar;
+- So irar aceitar um valor: A biblioteca que e nativa so aceita somente um valor, pode ter multiplos mas tem que ser bibliotecas externas
+- Devemos usar uma biblioteca padrao do Python functools com o decorador singledispatchmethod
+
+Olha o codigo;
+```
+from functools import singledispatchmethod
+
+class Analisador:
+    @singledispatchmethod
+    def analisar(self, valor):
+        print(f'Nao foi possivel analisar o valor {valor}')
+
+    @analisar.register
+    def _(self, valor: int):
+        print(f'{valor} e um Interio')
+
+    @analisar.register
+    def _(self, valor: float):
+        print(f'{valor} e um flutuante (Real)')
+
+    @analisar.register
+    def _(self, valor: str):
+        print(f'{valor} e uma cadeia de caracteres')
+
+    @analisar.register
+    def _(self, valor: tuple|list|dict):
+        print(f'{valor} e uma colecao de dados')
+```
+
+Como funciona, o primeiro analisador ele funciona como se fosse um else, caso nao tenha um metado para isso, o resto sao os metados
+
+**Sobrecarga de Operador**
+Voce vai fazer um operador funcionar de uma forma que voce quer exatamente, fazer com que o operador de + funciona da forma que voce quer
+Para endermos melhor vamos ter uma classe chamada Carteira e vamos ter o atribulto saldo.
+Para isso funcionar e necessario sabermos dos Metados magicos que sao, so vai ter alguns ai:
+
+| Descrição | Expressão | Método Especial (Dunder Method) |
+| :--- | :---: | :--- |
+| Equal to | p1 == p2 | p1.__eq__(p2) |
+| Not equal to | p1 != p2 | p1.__ne__(p2) |
+| Less than | p1 < p2 | p1.__lt__(p2) |
+| Less than or equal to | p1 <= p2 | p1.__le__(p2) |
+| Greater than | p1 > p2 | p1.__gt__(p2) |
+| Greater than or equal to | p1 >= p2 | p1.__ge__(p2) |
+| In-place Addition | p1 += p2 | p1.__iadd__(p2) |
+| In-place Subtract | p1 -= p2 | p1.__isub__(p2) |
+
+Veja o codigo:
+
+```
+class Carteira:
+    def __init__(self, valor: int|float = 0):
+        self.__saldo = valor
+
+    def __str__(self):
+        return f'Voce tem R${self.saldo:,.2f} na carteira'
+
+    @property
+    def saldo(self):
+        return self.__saldo
+
+    @saldo.setter
+    def saldo(self, valor):
+        raise PermissionError('Voce nao tem autorizacao para alterar o saldo desse jeito')
+
+    def __eq__(self, value):
+        if self.__saldo == value.__saldo:
+            return True
+        else:
+            return False
+
+    def __iadd__(self, value: int|float):
+        self.__saldo = self.__saldo + value
+        return self
+
+    def __isub__(self, value: int|float):
+        self.__saldo = self.__saldo - value
+        return self
+
+    def __le__(self, other):
+        if self.__saldo <= other.__saldo:
+            return True
+        else:
+            return False
+
+from classes import *
+
+def main():
+    c1 = Carteira(1000)
+    c2 = Carteira(2000)
+    
+    c1 += 50
+    c1 -= 10
+
+    if (c1 <= c2):
+        print('A segunda carteria de mais dinheiro')
+    else:
+        print('A primeira carteria tem mais dinheiro')
+    print(c1)
+
+if __name__ == "__main__":
+    main()
+```
+
+
+**Duck Typing**
+
+Bem ja ouviu a frase, parece um pato, anda como um pato, nada como um pato e faz qua, entao provavelmente e um Pato.
+No Python para usar polimofismo nao importa qual seja voce vau usar o metado Duck Typing que e algo como se uma coisa pode fazer varias coisas entao vao vai usar esse metados.
+Imagina o metado abrir().
+- Pode abrir uma porta
+- Uma lata
+- uma conta bancaria
+- Uma bau etc
+
+A mas como assim e como usar no codigo
+```
+class Porta:
+    def abrir(self):
+        print('Girar a macaneta e empurrar/ puxar a porta')
+
+class Empresa:
+    def abrir(self):
+        print('Vai no app e leve as documentacoes para abrir o MEI')
+
+class Ovo:
+    def abrir(self):
+        print('Quebre a casta e coloque a gema na frigideira')
+
+class Pedra:
+    pass
+
+#Metodo Pythonico polimorfinetico Duck Typing
+def tentar_abrir(objeto):
+    try:
+        objeto.abrir()
+    except:
+        print(f'encontrei problema em tentar abrir {objeto.__class__.__name__}')
+
+from classes import *
+
+def main():
+    a = Porta()
+    b = Empresa()
+    c = Ovo()
+    d = Pedra()
+
+    tentar_abrir(a)
+    tentar_abrir(b)
+    tentar_abrir(c)
+    tentar_abrir(d)
+
+if __name__ == "__main__":
+    main()
+```
